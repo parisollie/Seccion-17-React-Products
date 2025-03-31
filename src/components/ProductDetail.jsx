@@ -1,10 +1,18 @@
 import { PropTypes } from "prop-types";
 
-//Vid 232 
+//Paso 1.13,creamos el componente ProductDetail
 //Vid 236 ponemos el hanlderRemove
-export const ProductDetail = ({ handlerProductSelected, handlerRemove, product = {} }) => {
+export const ProductDetail = (
+    {
+        handlerProductSelected,
+        handlerRemove,
+        //paso 1.15, le pasamos el prop
+        product = {}
+    }) => {
+
     return (
         <tr>
+            {/** Paso 1.14 */}
             <td>{product.name}</td>
             <td>{product.description}</td>
             <td>{product.price}</td>
@@ -21,9 +29,10 @@ export const ProductDetail = ({ handlerProductSelected, handlerRemove, product =
         </tr>
     )
 }
-//Vid 233, agregamos los propTypes
+//Paso 1.18, agregamos los propTypes
 ProductDetail.propTypes = {
     product: PropTypes.object.isRequired,
+    //
     handlerRemove: PropTypes.func.isRequired,
     handlerProductSelected: PropTypes.func.isRequired
 }

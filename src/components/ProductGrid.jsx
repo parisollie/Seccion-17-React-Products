@@ -1,8 +1,17 @@
 import { PropTypes } from "prop-types"
 import { ProductDetail } from "./ProductDetail"
 
-//Vid 232 ,le ponemoslos props
-export const ProductGrid = ({ handlerProductSelected, handlerRemove, products = [] }) => {
+/* 
+   V-232 ,Paso 1.10. creamos el componente Product Grid
+  
+*/
+export const ProductGrid = (
+    {
+        //Paso 1.11, le pasamos los props
+        handlerProductSelected,
+        handlerRemove,
+        products = []
+    }) => {
 
 
     return (
@@ -22,14 +31,20 @@ export const ProductGrid = ({ handlerProductSelected, handlerRemove, products = 
                 {/** paso 1.5,Obtenemos cada elemento con el map y modificamos los elementos */}
                 {products.map(product => {
                     //Vid 236, ponemos handlerRemove
-                    return <ProductDetail handlerProductSelected={handlerProductSelected} handlerRemove={handlerRemove} product={product} key={product.name} />
+                    return <ProductDetail
+                        handlerProductSelected={handlerProductSelected}
+                        handlerRemove={handlerRemove}
+                        //Paso 1.16, le ponemos el product y el key
+                        product={product}
+                        key={product.name}
+                    />
                 })}
             </tbody>
         </table>
 
     )
 }
-//Vid 233, agregamos los propTypes
+//V-233,paso 1.17 agregamos los propTypes, instalamos dependencia
 ProductGrid.propTypes = {
     products: PropTypes.array.isRequired,
     //Vid 236

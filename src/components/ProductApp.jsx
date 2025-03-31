@@ -4,7 +4,7 @@ import { ProductGrid } from "./ProductGrid";
 import { PropTypes } from 'prop-types';
 import { ProductForm } from "./ProductForm";
 
-//Vid 233 , ponemos el title 
+//Paso 1.18 , ponemos el title 
 //V-230,paso 1.0 creamos el componente Products App
 export const ProductApp = ({ title }) => {
 
@@ -43,7 +43,7 @@ export const ProductApp = ({ title }) => {
 
 
 
-    //Vid 235, creamos el hanlder 
+    //Paso 2.4, creamos el handlerAddProduct 
     const handlerAddProduct = async (product) => {
         console.log(product);
 
@@ -67,7 +67,7 @@ export const ProductApp = ({ title }) => {
                 return prod;
             }));
         } else {
-            //Vid 235,Mantenemos los ...productos y obtenemos un nuevo producto.
+            //Paso 2.5 ,Mantenemos los ...productos y obtenemos un nuevo producto.
             //y ponemos el nuevo producto y le agregamos un nuevo id
             //setProducts([...products, { ...product, id: new Date().getTime() }]);
 
@@ -76,7 +76,7 @@ export const ProductApp = ({ title }) => {
             setProducts([...products, { ...response.data }]);
         }
     }
-    //Vis 233, handler para eliminar el producto, y pasamos el id a eliminar
+    // handler para eliminar el producto, y pasamos el id a eliminar
     const handlerRemoveProduct = (id) => {
         // console.log(id);
         //recibimos el arreglo original y le quitamos el original con filter.
@@ -95,14 +95,31 @@ export const ProductApp = ({ title }) => {
 
     return (
         <div className="container my-4">
+            {/** Paso 1.19,ponemos el title */}
             <h2>{title}</h2>
+            {/**Paso 1.34, ponemos el div */}
             <div className="row">
+
+                {/**Paso 1.35, ponemos el div */}
                 <div className="col">
-                    <ProductForm handlerAdd={handlerAddProduct} productSelected={productSelected} />
+                    {/**Paso 1.33, ponemos el ProductForm */}
+                    <ProductForm
+                        //Paso 2.6,le pasamos la funcion.
+                        handlerAdd={handlerAddProduct}
+                        productSelected={productSelected}
+                    />
                 </div>
+
+                {/**Paso 1.36, ponemos el div */}
                 <div className="col">
                     {
-                        products.length > 0 ? <ProductGrid products={products} handlerRemove={handlerRemoveProduct} handlerProductSelected={handlerProductSelected} />
+                        //Paso 1.12,ponemos <ProductGrid products={products} 
+                        products.length > 0 ?
+                            <ProductGrid
+                                products={products}
+                                handlerRemove={handlerRemoveProduct}
+                                handlerProductSelected={handlerProductSelected}
+                            />
                             : <div className="alert alert-warning">No hay productos en el sistema!</div>
                     }
 
@@ -111,7 +128,7 @@ export const ProductApp = ({ title }) => {
         </div>
     )
 }
-//Vid 233, agregamos los propTypes
+//Paso 1.21, agregamos los propTypes
 ProductApp.propTypes = {
     title: PropTypes.string.isRequired
 }
