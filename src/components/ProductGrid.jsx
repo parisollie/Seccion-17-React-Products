@@ -4,12 +4,13 @@ import { ProductDetail } from "./ProductDetail"
 //Vid 232 ,le ponemoslos props
 export const ProductGrid = ({ handlerProductSelected, handlerRemove, products = [] }) => {
 
-    //Vid 230
-    return (
 
+    return (
+        //Paso 1.4,ponemos una tabla con los productos
         <table className="table table-hover table-striped">
             <thead>
                 <tr>
+                    {/** th son los encabezados */}
                     <th>name</th>
                     <th>description</th>
                     <th>price</th>
@@ -18,9 +19,8 @@ export const ProductGrid = ({ handlerProductSelected, handlerRemove, products = 
                 </tr>
             </thead>
             <tbody>
-
+                {/** paso 1.5,Obtenemos cada elemento con el map y modificamos los elementos */}
                 {products.map(product => {
-                    //Obtenemos cada elemento con el map y modificamos los elementos
                     //Vid 236, ponemos handlerRemove
                     return <ProductDetail handlerProductSelected={handlerProductSelected} handlerRemove={handlerRemove} product={product} key={product.name} />
                 })}

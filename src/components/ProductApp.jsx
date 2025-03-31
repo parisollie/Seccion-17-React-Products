@@ -5,10 +5,13 @@ import { PropTypes } from 'prop-types';
 import { ProductForm } from "./ProductForm";
 
 //Vid 233 , ponemos el title 
+//V-230,paso 1.0 creamos el componente Products App
 export const ProductApp = ({ title }) => {
 
-    /*Vid 230 ,ponemos nuestro Hoks, es una constandte products y algunas funcion set que cambie
-    el estado de los productos,y el useState para menejar el estado de react y valores iniciales []*/
+    /*
+      Paso 1.2 ,ponemos nuestro Hoks, es una constante products y algunas funcion set que cambie
+      el estado de los productos,y el useState para menejar el estado de react y valores iniciales []
+    */
     const [products, setProducts] = useState([]);
 
     //vid 237 ,colocamos los datos iniciales.
@@ -26,14 +29,16 @@ export const ProductApp = ({ title }) => {
         setProducts(result.data._embedded.products);
     }
 
-    //Vid 231
+    //V-231,paso 1.6,ponemos el useEffect
     useEffect(() => {
-        //Vid 231, le mandamos la funcion con los productos.
-        //const result = listProduct();
-        //setProducts(result);
-        //Vid 245
+        /*
+          paso 1.9, le mandamos la función con los productos.
+          const result = listProduct();
+          setProducts(result);
+          Vid 245
+        */
         getProducts();
-    }, []);//[], se ejecuta una sola vez, en cada actualizacion 
+    }, []);//[],paso 1.7 se ejecuta una sola vez, en cada actualizacion 
 
 
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//Vid 230
+//Paso 1.3
 const initProducts = [
     {
         id: 1,
@@ -19,7 +19,7 @@ const initProducts = [
 //Vid 245, nuestra ruta
 const baseUrl = 'http://localhost:8080/products';
 
-//Vid 231
+//paso 1.8
 export const listProduct = () => {
     return initProducts;
 }
