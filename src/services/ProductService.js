@@ -17,7 +17,7 @@ const initProducts = [
     }
 ];
 
-//Vid 245, nuestra ruta
+//Paso 4.1, nuestra ruta con react de los productos
 const baseUrl = 'http://localhost:8080/products';
 
 //paso 1.8
@@ -25,11 +25,11 @@ export const listProduct = () => {
     return initProducts;
 }
 
-//Vid 245, el asyn siempre va acompañado del await
+//V-245,paso 4.0(aqui empieza la conexion con backend) el asyn siempre va acompañado del await
 export const findAll = async () => {
     try {
-        //definimos una constante respuesta (get,post,put es lo que tiene axios)
-        //las peticiones devuelven una promesa, que puede cumplir o no.
+        /*definimos una constante respuesta (get,post,put es lo que tiene axios)
+        las peticiones devuelven una promesa, que puede cumplir o no.*/
         const response = await axios.get(baseUrl);
         return response;
     } catch (error) {
@@ -38,7 +38,8 @@ export const findAll = async () => {
     return null;
 }
 
-//Vid 246 ,deestructuramos el objeto producto.
+//El paso 4.4, esta en el backend
+//V-246 ,paso 4.5 deestructuramos el objeto producto.
 export const create = async ({ name, description, price }) => {
     try {
         const response = await axios.post(baseUrl, {
@@ -52,7 +53,7 @@ export const create = async ({ name, description, price }) => {
     }
     return undefined;
 }
-//Vid 246 
+//Paso 4.6
 export const update = async ({ id, name, description, price }) => {
     try {
         //le concatenamos el id 
@@ -67,7 +68,7 @@ export const update = async ({ id, name, description, price }) => {
     }
     return undefined;
 }
-//Vid 247
+//V-247,paso 4.11
 export const remove = async (id) => {
 
     try {

@@ -23,7 +23,7 @@ export const ProductApp = ({ title }) => {
         price: ''
     })
 
-    //Vid 245,creamos una funcion intermedia
+    //Paso 4.2 creamos una función intermedia
     const getProducts = async () => {
         const result = await findAll();
         // console.log(result);
@@ -36,7 +36,8 @@ export const ProductApp = ({ title }) => {
           paso 1.9, le mandamos la función con los productos.
           const result = listProduct();
           setProducts(result);
-          Vid 245
+          
+          Paso 4.3, ponemos el get products para poder comunicar con el backend.
         */
         getProducts();
     }, []);//[],paso 1.7 se ejecuta una sola vez, en cada actualizacion 
@@ -45,12 +46,13 @@ export const ProductApp = ({ title }) => {
 
 
     //Paso 2.4, creamos el handlerAddProduct 
+    //Paso 4.8, le ponems el asyng
     const handlerAddProduct = async (product) => {
         console.log(product);
         //Paso 3.6, si el producto es mayor a 0
         if (product.id > 0) {
 
-            //Vid 246, pasamos el producro que se va por argumetno
+            //Paso 4.7, pasamos el producro que se va por argumento
             const response = await update(product);
 
             //V-238,paso 3.0
@@ -61,6 +63,7 @@ export const ProductApp = ({ title }) => {
                      //devolvemos el objeto cambiado.
                      return { ...product }
                  }*/
+                //Paso 4.9, le pasamos los datos de la base de datos
                 if (prod.id == response.data.id) {
                     //Regresamos las respuesta del producto.
                     return { ...response.data }
@@ -74,6 +77,7 @@ export const ProductApp = ({ title }) => {
             y ponemos el nuevo producto y le agregamos un nuevo id
             setProducts([...products, { ...product, id: new Date().getTime() }]);
             Paso 3.1
+            Paso 4.10, le pasamos el create product para ponerlo en la se de datos.
             */
             const response = await create(product);
             //ya viene el id en la base de datos ,solo lo guardamos.
@@ -82,12 +86,14 @@ export const ProductApp = ({ title }) => {
     }
     //Paso 2.9 handler para eliminar el producto, y pasamos el id a eliminar
     const handlerRemoveProduct = (id) => {
-        /* console.log(id);
-        recibimos el arreglo original y le quitamos el original con filter.
-        Paso 3.4, le damos el id product.id != id, a un producto.
-        setProducts(products.filter(product => product.id != id));
-        Vid 247, removemos el id a eliminar.*/
+        //Paso 4.12, removemos el id a eliminar
         remove(id);
+        /*
+         console.log(id);
+         recibimos el arreglo original y le quitamos el original con filter.
+         Paso 3.4, le damos el id product.id != id, a un producto.
+         setProducts(products.filter(product => product.id != id));
+        */
         setProducts(products.filter(product => product.id != id));
     }
 
@@ -122,6 +128,7 @@ export const ProductApp = ({ title }) => {
                 <div className="col">
                     {
                         //Paso 1.12,ponemos <ProductGrid products={products} 
+                        //V-239,Paso 3.7, si el producto es mayor a 0
                         products.length > 0 ?
                             <ProductGrid
                                 products={products}
