@@ -3,6 +3,7 @@ import axios from "axios";
 //Paso 1.3
 const initProducts = [
     {
+        //paso 3.5, le asigna el id
         id: 1,
         name: 'Monitor Samsung 65',
         price: 500,

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 //Paso 1.26,Objeto formulario
 const initialDataForm = {
+    //Paso 3.3,ponemos el id
     id: 0,
     name: '',
     description: '',
@@ -10,6 +11,7 @@ const initialDataForm = {
 //V-234,paso 1.22,creamos el componente ProductForm, le pasamos los hanlder
 export const ProductForm = (
     {
+        //Paso 2.28
         productSelected,
         //Paso 2.7, le pasamos el prop
         handlerAdd
@@ -24,7 +26,7 @@ export const ProductForm = (
     //Paso 1.28,desestructuramos
     const { id, name, description, price } = form;
 
-    //Vid 237, plantilla de eventos, cuando cambia algo.Le pasamos el producto seleccionado.
+    //Paso 2.29, plantilla de eventos, cuando cambia algo.Le pasamos el producto seleccionado.
     useEffect(() => {
         setForm(productSelected);
     }, [productSelected]);//se gatilla cuando cambia el product selected

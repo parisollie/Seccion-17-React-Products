@@ -7,9 +7,11 @@ import { ProductDetail } from "./ProductDetail"
 */
 export const ProductGrid = (
     {
-        //Paso 1.11, le pasamos los props
+        //Paso 2.20
         handlerProductSelected,
+        //Paso 2.11
         handlerRemove,
+        //Paso 1.11, le pasamos los props
         products = []
     }) => {
 
@@ -23,16 +25,20 @@ export const ProductGrid = (
                     <th>name</th>
                     <th>description</th>
                     <th>price</th>
+                    {/**Paso 2.21 */}
                     <th>update</th>
+                    {/**Paso 2.16 */}
                     <th>remove</th>
                 </tr>
             </thead>
             <tbody>
                 {/** paso 1.5,Obtenemos cada elemento con el map y modificamos los elementos */}
                 {products.map(product => {
-                    //Vid 236, ponemos handlerRemove
+
                     return <ProductDetail
+                        //Paso 2.22
                         handlerProductSelected={handlerProductSelected}
+                        //paso 2.12
                         handlerRemove={handlerRemove}
                         //Paso 1.16, le ponemos el product y el key
                         product={product}
@@ -47,7 +53,8 @@ export const ProductGrid = (
 //V-233,paso 1.17 agregamos los propTypes, instalamos dependencia
 ProductGrid.propTypes = {
     products: PropTypes.array.isRequired,
-    //Vid 236
+    //Paso 2.13
     handlerRemove: PropTypes.func.isRequired,
+    //Paso 2.23
     handlerProductSelected: PropTypes.func.isRequired
 }

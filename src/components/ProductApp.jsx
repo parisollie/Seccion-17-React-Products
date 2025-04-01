@@ -14,8 +14,9 @@ export const ProductApp = ({ title }) => {
     */
     const [products, setProducts] = useState([]);
 
-    //vid 237 ,colocamos los datos iniciales.
+    //V-237,Paso 2.18 colocamos los datos iniciales.
     const [productSelected, setProductSelected] = useState({
+        //Paso 3.2,ponemos el id
         id: 0,
         name: '',
         description: '',
@@ -46,19 +47,20 @@ export const ProductApp = ({ title }) => {
     //Paso 2.4, creamos el handlerAddProduct 
     const handlerAddProduct = async (product) => {
         console.log(product);
-
+        //Paso 3.6, si el producto es mayor a 0
         if (product.id > 0) {
 
             //Vid 246, pasamos el producro que se va por argumetno
             const response = await update(product);
 
-            //Vid 238
+            //V-238,paso 3.0
             setProducts(products.map(prod => {
-                //Si existe el producto al producto que pasamos por argumento
-                // if (prod.id == product.id) {
-                //     //devolvemos el objeto cambiado.
-                //     return { ...product }
-                // }
+                /*
+                Si existe el producto al producto que pasamos por argumento
+                 if (prod.id == product.id) {
+                     //devolvemos el objeto cambiado.
+                     return { ...product }
+                 }*/
                 if (prod.id == response.data.id) {
                     //Regresamos las respuesta del producto.
                     return { ...response.data }
@@ -67,27 +69,29 @@ export const ProductApp = ({ title }) => {
                 return prod;
             }));
         } else {
-            //Paso 2.5 ,Mantenemos los ...productos y obtenemos un nuevo producto.
-            //y ponemos el nuevo producto y le agregamos un nuevo id
-            //setProducts([...products, { ...product, id: new Date().getTime() }]);
-
+            /*
+            Paso 2.5 ,Mantenemos los ...productos y obtenemos un nuevo producto.
+            y ponemos el nuevo producto y le agregamos un nuevo id
+            setProducts([...products, { ...product, id: new Date().getTime() }]);
+            Paso 3.1
+            */
             const response = await create(product);
             //ya viene el id en la base de datos ,solo lo guardamos.
             setProducts([...products, { ...response.data }]);
         }
     }
-    // handler para eliminar el producto, y pasamos el id a eliminar
+    //Paso 2.9 handler para eliminar el producto, y pasamos el id a eliminar
     const handlerRemoveProduct = (id) => {
-        // console.log(id);
-        //recibimos el arreglo original y le quitamos el original con filter.
-        //Vid 238, le damos el id product.id != id, a un producto.
-        //setProducts(products.filter(product => product.id != id));
-        //Vid 247, removemos el id a eliinar.
+        /* console.log(id);
+        recibimos el arreglo original y le quitamos el original con filter.
+        Paso 3.4, le damos el id product.id != id, a un producto.
+        setProducts(products.filter(product => product.id != id));
+        Vid 247, removemos el id a eliminar.*/
         remove(id);
         setProducts(products.filter(product => product.id != id));
     }
 
-    //Vid 237
+    //Paso 2.19
     const handlerProductSelected = (product) => {
         //Recibe el nuevo producto.
         setProductSelected({ ...product });
@@ -97,7 +101,10 @@ export const ProductApp = ({ title }) => {
         <div className="container my-4">
             {/** Paso 1.19,ponemos el title */}
             <h2>{title}</h2>
-            {/**Paso 1.34, ponemos el div */}
+            {/*
+              *Paso 1.34, ponemos el div 
+             * V-239,Paso 3.7, le ponemos clases del bootstrap
+            */}
             <div className="row">
 
                 {/**Paso 1.35, ponemos el div */}
@@ -106,6 +113,7 @@ export const ProductApp = ({ title }) => {
                     <ProductForm
                         //Paso 2.6,le pasamos la funcion.
                         handlerAdd={handlerAddProduct}
+                        //Paso 2.27
                         productSelected={productSelected}
                     />
                 </div>
@@ -117,7 +125,9 @@ export const ProductApp = ({ title }) => {
                         products.length > 0 ?
                             <ProductGrid
                                 products={products}
+                                //Paso 2.10
                                 handlerRemove={handlerRemoveProduct}
+                                //Paso 2.20
                                 handlerProductSelected={handlerProductSelected}
                             />
                             : <div className="alert alert-warning">No hay productos en el sistema!</div>
